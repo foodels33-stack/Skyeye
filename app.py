@@ -21,6 +21,8 @@ st.subheader("מפת שידורים חיים מהחלל ומהעולם")
 col1, col2 = st.columns([2, 1])
 
 with col1:
+    st.write("### מפת מצפי כוכבים ושידורים")
+    
     # יצירת מפה
     m = folium.Map(location=[20, 0], zoom_start=2, tiles="CartoDB dark_matter")
     
@@ -29,8 +31,8 @@ with col1:
         {
             "name": "תחנת החלל הבינלאומית (ISS)", 
             "lat": 0, "lon": 0, 
-            "info": "צפו בשידור חי מהחלל דרך ערוץ היוטיוב של נאס''א.",
-            "link": "https://www.youtube.com/watch?v=jPTD2gnZFUw"
+            "info": "שידור חי רציף מהחלל בערוץ NASA.",
+            "link": "https://www.youtube.com/nasa/live"
         },
         {
             "name": "מצפה רמון - ישראל", 
@@ -41,23 +43,23 @@ with col1:
         {
             "name": "מצפה קק - הוואי", 
             "lat": 19.826, "lon": -155.474, 
-            "info": "מצלמות בשידור חי מהפסגה הכי גבוהה בהוואי.",
+            "info": "מצלמות בשידור חי מפסגת המאונה קיאה.",
             "link": "https://www.keckobservatory.org/summit-webcams/"
         },
         {
             "name": "ספייס איקס (SpaceX) - שיגורים", 
             "lat": 28.572, "lon": -80.648, 
-            "info": "צפו בשידורי השיגורים של אילון מאסק מקייפ קנברל.",
+            "info": "שידורי השיגורים של אילון מאסק.",
             "link": "https://www.spacex.com/launches/"
         }
     ]
     
     for loc in locations:
-        # יצירת חלונית עם כפתור שפותח טאב חדש
+        # יצירת חלונית עם כפתור ברור וקישור ישיר
         html = f"""
-        <div style='font-family: sans-serif; text-align: right; direction: rtl; color: black;'>
-            <h4 style='margin:0;'>{loc['name']}</h4>
-            <p style='font-size:12px;'>{loc['info']}</p>
+        <div style='font-family: sans-serif; text-align: right; direction: rtl; color: black; min-width: 180px;'>
+            <h4 style='margin:0 0 5px 0;'>{loc['name']}</h4>
+            <p style='font-size:12px; margin-bottom:10px;'>{loc['info']}</p>
             <a href='{loc['link']}' target='_blank' rel='noopener noreferrer' style='
                 display: block;
                 padding: 10px;
@@ -66,7 +68,8 @@ with col1:
                 text-decoration: none;
                 border-radius: 5px;
                 text-align: center;
-                font-weight: bold;'>לצפייה בשידור חי 🚀</a>
+                font-weight: bold;
+                border: 1px solid #1a1a1a;'>לצפייה בשידור חי 🚀</a>
         </div>
         """
         folium.Marker(
@@ -83,7 +86,7 @@ with col2:
     if st.button("שלח"):
         st.success(f"שלום {name}!")
     
-    st.info("טיפ: הקישורים נפתחים בחלון חדש כדי להבטיח איכות שידור מקסימלית.")
+    st.info("טיפ: כל הקישורים נפתחים בלשונית חדשה בדפדפן כדי למנוע חסימות.")
 
 # תמונת היום של נאס"א
 st.write("---")
